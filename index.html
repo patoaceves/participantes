@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Participantes Sophia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Poltawski+Nowy:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:          #C0112F;
+      --red-soft:     rgba(192,17,47,.12);
+      --bg:           #FFFCFA;
+      --text:         #1a1a1a;
+      --muted:        #6b7280;
+      --border:       #e5e0db;
+      --success-bg:   #d1fae5;
+      --success-text: #065f46;
+      --error-bg:     #fce4e4;
+      --error-text:   #9b1c1c;
+      --radius-card:  16px;
+      --radius-input: 10px;
+      --radius-btn:   999px;
+      --shadow:       0 8px 24px rgba(0,0,0,.09);
+    }
+
+    html { background: var(--bg); }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: 'Karla', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      padding: 0;
+    }
+
+    /* ── Header ── */
+    #site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 95px;
+      background: #FFFCFA;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+    }
+    #site-header .logo { display: flex; align-items: center; text-decoration: none; }
+    #site-header .logo img { height: 118px; }
+    #site-header nav { display: flex; gap: 28px; align-items: center; }
+    #site-header nav a {
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 400;
+      color: #c0112f;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      transition: opacity .2s;
+    }
+    #site-header nav a:hover { opacity: .65; }
+    #site-header .btn-contact {
+      background: #c0112f;
+      color: white;
+      border-radius: 8px;
+      padding: 11px 22px;
+      font-size: .82em;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    #site-header .btn-contact:hover { background: #a00f27; }
+    @media (max-width: 960px) {
+      #site-header { padding: 0 20px; }
+      #site-header nav { display: none; }
+    }
+
+    /* ── Page center ── */
+    .page-center {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    /* ── Card ── */
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: #fff;
+      border-radius: var(--radius-card);
+      padding: 36px 36px 32px;
+      box-shadow: var(--shadow);
+      animation: fadeUp .45s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Typography ── */
+    h1 {
+      font-family: 'Poltawski Nowy', serif;
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -.4px;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .form-hint {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* ── Fields ── */
+    .field { margin-bottom: 16px; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      height: 44px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-input);
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Karla', sans-serif;
+      font-size: 15px;
+      padding: 0 14px;
+      transition: border-color .18s, box-shadow .18s, background .18s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px var(--red-soft);
+      background: #fff;
+    }
+
+    input::placeholder { color: #b0a9a4; }
+
+    /* ── Button ── */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      height: 46px;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Karla', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      border: none;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      margin-top: 20px;
+      transition: opacity .18s, transform .12s;
+      user-select: none;
+    }
+    .btn:hover:not(:disabled)  { opacity: .9; transform: translateY(-1px); }
+    .btn:active:not(:disabled) { transform: translateY(0); opacity: 1; }
+    .btn:disabled              { opacity: .7; cursor: not-allowed; }
+
+    /* ── Spinner ── */
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2.5px solid rgba(255,255,255,.35);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .65s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Alerts ── */
+    .alert {
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-top: 20px;
+      animation: fadeUp .3s ease both;
+    }
+    .alert-success { background: var(--success-bg); color: var(--success-text); }
+    .alert-error   { background: var(--error-bg);   color: var(--error-text);   }
+    .alert strong  { font-weight: 700; }
+
+    /* ── Sections ── */
+    .section { animation: fadeUp .35s ease both; }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+<header id="site-header">
+  <a class="logo" href="https://sophiamx.org" target="_blank">
+    <img src="https://static.wixstatic.com/media/6bf1ef_d0efb91350e04315be1fe1a9982e69c8~mv2.png" alt="Sophia">
+  </a>
+  <nav>
+    <a href="https://sophiamx.org" target="_blank">Home</a>
+    <a href="https://sophiamx.org/sophia" target="_blank">Sophia</a>
+    <a href="https://sophiamx.org/estudia" target="_blank">Estudia</a>
+    <a href="https://sophiamx.org/coaching" target="_blank">Coaching</a>
+    <a href="https://sophiamx.org/embajadores" target="_blank">Embajadores</a>
+    <a href="https://sophiamx.org/consultoria" target="_blank">Consultoría</a>
+    <a class="btn-contact" href="https://sophiamx.org/contacto" target="_blank">Contáctanos</a>
+  </nav>
+</header>
+
+<div class="page-center">
+<div class="card">
+
+  <!-- PASO 1: Buscar email -->
+  <div id="step-lookup" class="section">
+    <h1>Tu ID&nbsp;Participante</h1>
+    <p class="subtitle">Ingresa tu correo para recuperar o crear tu ID Participante.</p>
+
+    <div class="field">
+      <label for="email-input">Correo electrónico</label>
+      <input type="email" id="email-input" placeholder="correo@ejemplo.com" autocomplete="email" />
+    </div>
+
+    <button class="btn" id="btn-buscar" onclick="buscar()">Buscar</button>
+    <div id="lookup-error" class="alert alert-error hidden"></div>
+  </div>
+
+  <!-- CASO A: Encontrado -->
+  <div id="step-found" class="section hidden">
+    <h1>¡Bienvenido de vuelta!</h1>
+    <div id="found-msg" class="alert alert-success"></div>
+  </div>
+
+  <!-- CASO B: No encontrado — formulario -->
+  <div id="step-register" class="section hidden">
+    <h1>Completa tu registro</h1>
+    <p class="form-hint">No encontramos un perfil con ese correo. Llena los datos para crearlo.</p>
+
+    <div class="field">
+      <label for="reg-email">Correo electrónico</label>
+      <input type="email" id="reg-email" placeholder="correo@ejemplo.com" autocomplete="email" />
+    </div>
+    <div class="field">
+      <label for="reg-nombre">Nombre</label>
+      <input type="text" id="reg-nombre" placeholder="María" autocomplete="given-name" />
+    </div>
+    <div class="field">
+      <label for="reg-apellidos">Apellidos</label>
+      <input type="text" id="reg-apellidos" placeholder="González López" autocomplete="family-name" />
+    </div>
+    <div class="field">
+      <label for="reg-whatsapp">WhatsApp</label>
+      <input type="tel" id="reg-whatsapp" placeholder="+52 81 0000 0000" autocomplete="tel" />
+    </div>
+    <div class="field">
+      <label for="reg-fecha">Fecha de nacimiento</label>
+      <input type="date" id="reg-fecha" />
+    </div>
+
+    <button class="btn" id="btn-registrar" onclick="registrar()">Crear perfil</button>
+    <div id="register-error" class="alert alert-error hidden"></div>
+  </div>
+
+  <!-- Perfil creado -->
+  <div id="step-created" class="section hidden">
+    <h1>¡Perfil creado!</h1>
+    <div id="created-msg" class="alert alert-success"></div>
+  </div>
+
+</div><!-- /card -->
+</div><!-- /page-center -->
+
+<script>
+  // El token es inyectado por api/index.js en Vercel antes de servir esta página.
+  // Nunca debe aparecer hardcodeado aquí.
+  const AIRTABLE_TOKEN = window.__QUERY_ID_PARTICIPANTE__ || '';
+  const AIRTABLE_URL   = 'https://api.airtable.com/v0/appGQ2udExw1H21mk/tbldMm6u16mQhQvcz';
+  const GHL_WEBHOOK    = 'https://services.leadconnectorhq.com/hooks/ek1LQvM0Kyj7fll9nDO7/webhook-trigger/c33b2089-84ff-40fd-8f1d-ebec21aab489';
+
+  /* ── Utilidades ── */
+  const $     = id => document.getElementById(id);
+  const show  = id => $(id).classList.remove('hidden');
+  const hide  = id => $(id).classList.add('hidden');
+  const setHTML = (id, h) => $(id).innerHTML = h;
+
+  function setBtn(btn, label, loading) {
+    btn.disabled = loading;
+    btn.innerHTML = loading ? `<span class="spinner"></span>${label}` : label;
+  }
+
+  function showError(id, msg) {
+    $(id).innerHTML = `<strong>Error:</strong> ${msg}`;
+    $(id).classList.remove('hidden');
+  }
+
+  function hideError(id) { $(id).classList.add('hidden'); }
+
+  /* ── Webhook GHL (no-cors, nunca rompe el flujo) ── */
+  async function dispararWebhook(payload) {
+    try {
+      await fetch(GHL_WEBHOOK, {
+        method: 'POST',
+        mode:   'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+    } catch (e) {
+      console.warn('Webhook GHL falló (no crítico):', e);
+    }
+  }
+
+  /* ── PASO 1: Buscar ── */
+  async function buscar() {
+    const emailInput = $('email-input');
+    const email = emailInput.value.trim().toLowerCase();
+    const btn   = $('btn-buscar');
+
+    hideError('lookup-error');
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError('lookup-error', 'Ingresa un correo electrónico válido.');
+      emailInput.focus();
+      return;
+    }
+
+    setBtn(btn, 'Buscando…', true);
+
+    try {
+      const formula = encodeURIComponent(`({Email}="${email}")`);
+      const res = await fetch(`${AIRTABLE_URL}?filterByFormula=${formula}`, {
+        headers: { Authorization: `Bearer ${AIRTABLE_TOKEN}` },
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err?.error?.message || `HTTP ${res.status}`);
+      }
+
+      const data = await res.json();
+
+      if (data.records && data.records.length > 0) {
+        /* CASO A: encontrado */
+        const f = data.records[0].fields || {};
+        const payload = {
+          nombre:           f['Nombre']             || '',
+          apellidos:        f['Apellidos']           || '',
+          email:            f['Email']               || email,
+          whatsapp:         f['WhatsApp']            || '',
+          fecha_nacimiento: f['Fecha de Nacimiento'] || '',
+          id_participante:  f['ID Participante']     || '',
+          origen:           'encontrado',
+        };
+
+        hide('step-lookup');
+        show('step-found');
+        setHTML('found-msg',
+          `Tu <strong>ID Participante</strong> fue enviado a <strong>${payload.email}</strong>.<br>
+           ID: <strong>${payload.id_participante || '(pendiente)'}</strong>`);
+
+        await dispararWebhook(payload);
+
+      } else {
+        /* CASO B: no encontrado */
+        hide('step-lookup');
+        show('step-register');
+        $('reg-email').value = email;
+      }
+
+    } catch (e) {
+      showError('lookup-error', e.message || 'No pudimos conectar con el servidor. Intenta de nuevo.');
+    } finally {
+      setBtn(btn, 'Buscar', false);
+    }
+  }
+
+  /* ── PASO 2-B: Registrar ── */
+  async function registrar() {
+    const email     = $('reg-email').value.trim();
+    const nombre    = $('reg-nombre').value.trim();
+    const apellidos = $('reg-apellidos').value.trim();
+    const whatsapp  = $('reg-whatsapp').value.trim();
+    const fecha     = $('reg-fecha').value;
+    const btn       = $('btn-registrar');
+
+    hideError('register-error');
+
+    if (!email)     { showError('register-error', 'El correo es requerido.'); return; }
+    if (!nombre)    { showError('register-error', 'El nombre es requerido.'); return; }
+    if (!apellidos) { showError('register-error', 'Los apellidos son requeridos.'); return; }
+    if (!whatsapp)  { showError('register-error', 'El WhatsApp es requerido.'); return; }
+    if (!fecha)     { showError('register-error', 'La fecha de nacimiento es requerida.'); return; }
+
+    setBtn(btn, 'Creando…', true);
+
+    try {
+      const createRes = await fetch(AIRTABLE_URL, {
+        method:  'POST',
+        headers: {
+          Authorization:  `Bearer ${AIRTABLE_TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fields: {
+            Email:                 email,
+            Nombre:                nombre,
+            Apellidos:             apellidos,
+            WhatsApp:              whatsapp,
+            'Fecha de Nacimiento': fecha,
+          },
+        }),
+      });
+
+      if (!createRes.ok) {
+        const err = await createRes.json().catch(() => ({}));
+        throw new Error(err?.error?.message || `HTTP ${createRes.status}`);
+      }
+
+      const created        = await createRes.json();
+      const idParticipante = (created.fields || {})['ID Participante'] || '';
+
+      hide('step-register');
+      show('step-created');
+      setHTML('created-msg',
+        `Tu <strong>ID Participante</strong> fue enviado a <strong>${email}</strong>.<br>
+         ID: <strong>${idParticipante || '(será asignado pronto)'}</strong>`);
+
+      await dispararWebhook({
+        nombre, apellidos, email, whatsapp,
+        fecha_nacimiento: fecha,
+        id_participante:  idParticipante,
+        origen:           'nuevo',
+      });
+
+    } catch (e) {
+      showError('register-error', e.message || 'No pudimos crear el perfil. Intenta de nuevo.');
+    } finally {
+      setBtn(btn, 'Crear perfil', false);
+    }
+  }
+
+  /* ── Enter en el campo email ── */
+  $('email-input').addEventListener('keydown', e => { if (e.key === 'Enter') buscar(); });
+</script>
+
+</body>
+</html>
