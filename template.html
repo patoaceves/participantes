@@ -479,9 +479,9 @@
     const email     = $('reg-email').value.trim();
     const nombre    = $('reg-nombre').value.trim();
     const apellidos = $('reg-apellidos').value.trim();
-    const pais      = $('reg-pais').value;
-    const numero    = $('reg-whatsapp').value.trim();
-    const whatsapp  = numero ? `${pais} ${numero}` : '';
+    const pais      = $('reg-pais').value.replace('-CA', '').replace('+', '');
+    const numero    = $('reg-whatsapp').value.trim().replace(/\D/g, '');
+    const whatsapp  = numero ? Number(`${pais}${numero}`) : null;
     const fecha     = $('reg-fecha').value;
     const btn       = $('btn-registrar');
 
