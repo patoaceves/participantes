@@ -13,7 +13,7 @@ const path = require('path');
 module.exports = (req, res) => {
   const token    = process.env.QUERY_ID_PARTICIPANTE || '';
   // __dirname es api/ — subimos un nivel para llegar a la raíz del proyecto
-  const filePath = path.join(__dirname, '..', 'index.html');
+  const filePath = path.join(__dirname, '..', 'template.html');
   let   html     = fs.readFileSync(filePath, 'utf8');
 
   html = html.replace('window.__QUERY_ID_PARTICIPANTE__', JSON.stringify(token));
