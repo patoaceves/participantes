@@ -310,7 +310,7 @@
   // Nunca debe aparecer hardcodeado aquí.
   const AIRTABLE_TOKEN = window.__QUERY_ID_PARTICIPANTE__ || '';
   const AIRTABLE_URL   = 'https://api.airtable.com/v0/appGQ2udExw1H21mk/tbldMm6u16mQhQvcz';
-  const GHL_WEBHOOK    = 'https://services.leadconnectorhq.com/hooks/ek1LQvM0Kyj7fll9nDO7/webhook-trigger/c33b2089-84ff-40fd-8f1d-ebec21aab489';
+  const GHL_WEBHOOK    = '/api/webhook';
 
   /* ── Utilidades ── */
   const $     = id => document.getElementById(id);
@@ -334,10 +334,9 @@
   async function dispararWebhook(payload) {
     try {
       await fetch(GHL_WEBHOOK, {
-        method: 'POST',
-        mode:   'no-cors',
+        method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body:    JSON.stringify(payload),
       });
     } catch (e) {
       console.warn('Webhook GHL falló (no crítico):', e);
@@ -389,8 +388,7 @@
         hide('step-lookup');
         show('step-found');
         setHTML('found-msg',
-          `Tu <strong>ID Participante</strong> fue enviado a <strong>${payload.email}</strong>.<br>
-           ID: <strong>${payload.id_participante || '(pendiente)'}</strong>`);
+          `Tu <strong>ID Participante</strong> fue enviado a <strong>${payload.email}</strong>. Revisa tu bandeja de entrada.`);
 
         await dispararWebhook(payload);
 
@@ -456,8 +454,7 @@
       hide('step-register');
       show('step-created');
       setHTML('created-msg',
-        `Tu <strong>ID Participante</strong> fue enviado a <strong>${email}</strong>.<br>
-         ID: <strong>${idParticipante || '(será asignado pronto)'}</strong>`);
+        `Tu <strong>ID Participante</strong> fue enviado a <strong>${email}</strong>. Revisa tu bandeja de entrada.`);
 
       await dispararWebhook({
         nombre, apellidos, email, whatsapp,
