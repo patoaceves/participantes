@@ -1,15 +1,18 @@
 // api/index.js
 // Función serverless de Vercel.
-// Lee index.html, sustituye el placeholder por el token real
+// Lee _template.html, sustituye el placeholder por el token real
 // (guardado en la env var QUERY_ID_PARTICIPANTE del dashboard de Vercel)
 // y devuelve el HTML al navegador. El token nunca vive en el repositorio.
+//
+// IMPORTANTE: el archivo fuente se llama _template.html (no index.html)
+// para que Vercel no lo sirva como estático antes de pasar por aquí.
 
 const fs   = require('fs');
 const path = require('path');
 
 module.exports = (req, res) => {
   const token    = process.env.QUERY_ID_PARTICIPANTE || '';
-  const filePath = path.join(process.cwd(), 'index.html');
+  const filePath = path.join(process.cwd(), '_template.html');
   let   html     = fs.readFileSync(filePath, 'utf8');
 
   html = html.replace('window.__QUERY_ID_PARTICIPANTE__', JSON.stringify(token));
