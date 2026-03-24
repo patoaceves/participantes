@@ -474,24 +474,57 @@
     }
   }
 
+  /* ── Helpers: capitalización ── */
+  const EXCEPCIONES = ["de", "del", "la", "las", "los", "y"];
+
+  function toProperCase(str) {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .filter(p => p.trim() !== "")
+      .map((palabra, index) => {
+        if (EXCEPCIONES.includes(palabra) && index !== 0) return palabra;
+        return palabra.charAt(0).toUpperCase() + palabra.slice(1);
+      })
+      .join(" ");
+  }
+
+  /* ── Helper: generar ID Participante ── */
+  function generarIdParticipante(nombre) {
+    let limpio = (nombre ?? "").trim().toUpperCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^A-Z\s]/g, "");
+    if (!limpio) return "PAR" + Math.floor(100000 + Math.random() * 900000);
+    const letras  = limpio.replace(/\s+/g, "").slice(0, 3);
+    const random6 = Math.floor(100000 + Math.random() * 900000);
+    return `${letras}${random6}`;
+  }
+
   /* ── PASO 2-B: Registrar ── */
   async function registrar() {
-    const email     = $('reg-email').value.trim();
-    const nombre    = $('reg-nombre').value.trim();
-    const apellidos = $('reg-apellidos').value.trim();
-    const pais      = $('reg-pais').value.replace('-CA', '').replace('+', '');
-    const numero    = $('reg-whatsapp').value.trim().replace(/\D/g, '');
-    const whatsapp  = numero ? Number(`${pais}${numero}`) : null;
-    const fecha     = $('reg-fecha').value;
-    const btn       = $('btn-registrar');
+    const email          = $('reg-email').value.trim();
+    const nombreRaw      = $('reg-nombre').value.trim();
+    const apellidosRaw   = $('reg-apellidos').value.trim();
+    const pais           = $('reg-pais').value.replace('-CA', '').replace('+', '');
+    const numero         = $('reg-whatsapp').value.trim().replace(/\D/g, '');
+    const whatsapp       = numero ? Number(`${pais}${numero}`) : null;
+    const fecha          = $('reg-fecha').value;
+    const btn            = $('btn-registrar');
 
     hideError('register-error');
 
-    if (!email)     { showError('register-error', 'El correo es requerido.'); return; }
-    if (!nombre)    { showError('register-error', 'El nombre es requerido.'); return; }
-    if (!apellidos) { showError('register-error', 'Los apellidos son requeridos.'); return; }
-    if (!whatsapp)  { showError('register-error', 'El WhatsApp es requerido.'); return; }
-    if (!fecha)     { showError('register-error', 'La fecha de nacimiento es requerida.'); return; }
+    if (!email)        { showError('register-error', 'El correo es requerido.'); return; }
+    if (!nombreRaw)    { showError('register-error', 'El nombre es requerido.'); return; }
+    if (!apellidosRaw) { showError('register-error', 'Los apellidos son requeridos.'); return; }
+    if (!whatsapp)     { showError('register-error', 'El WhatsApp es requerido.'); return; }
+    if (!fecha)        { showError('register-error', 'La fecha de nacimiento es requerida.'); return; }
+
+    // Capitalización correcta
+    const nombre      = toProperCase(nombreRaw);
+    const apellidos   = toProperCase(apellidosRaw);
+
+    // Generar ID Participante
+    const idParticipante = generarIdParticipante(nombreRaw);
 
     setBtn(btn, 'Creando…', true);
 
@@ -504,6 +537,7 @@
         },
         body: JSON.stringify({
           fields: {
+            'ID Participante':     idParticipante,
             Email:                 email,
             Nombre:                nombre,
             Apellidos:             apellidos,
@@ -517,9 +551,6 @@
         const err = await createRes.json().catch(() => ({}));
         throw new Error(err?.error?.message || `HTTP ${createRes.status}`);
       }
-
-      const created        = await createRes.json();
-      const idParticipante = (created.fields || {})['ID Participante'] || '';
 
       hide('step-register');
       show('step-created');
