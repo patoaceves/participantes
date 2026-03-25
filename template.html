@@ -8,10 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Poltawski+Nowy:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --red:          #C0112F;
       --red-soft:     rgba(192,17,47,.12);
@@ -28,245 +26,78 @@
       --radius-btn:   999px;
       --shadow:       0 8px 24px rgba(0,0,0,.09);
     }
-
     html { background: var(--bg); }
+    body { display:flex; flex-direction:column; min-height:100vh; font-family:'Karla',sans-serif; font-size:15px; line-height:1.6; color:var(--text); background:var(--bg); padding:0; }
 
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      font-family: 'Karla', sans-serif;
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--text);
-      background: var(--bg);
-      padding: 0;
-    }
+    #site-header { display:flex; align-items:center; justify-content:space-between; padding:0 48px; height:95px; background:#FFFCFA; position:sticky; top:0; z-index:100; border-bottom:1px solid rgba(0,0,0,.05); }
+    #site-header .logo { display:flex; align-items:center; text-decoration:none; }
+    #site-header .logo img { height:118px; }
+    #site-header nav { display:flex; gap:28px; align-items:center; }
+    #site-header nav a { text-decoration:none; font-size:1em; font-weight:400; color:#c0112f; text-transform:uppercase; letter-spacing:.08em; transition:opacity .2s; }
+    #site-header nav a:hover { opacity:.65; }
+    #site-header .btn-contact { background:#c0112f; color:white; border-radius:8px; padding:11px 22px; font-size:.82em; font-weight:600; text-decoration:none; transition:background .2s; white-space:nowrap; }
+    #site-header .btn-contact:hover { background:#a00f27; }
+    @media (max-width:960px) { #site-header{padding:0 20px;} #site-header nav{display:none;} }
 
-    /* ── Header ── */
-    #site-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 48px;
-      height: 95px;
-      background: #FFFCFA;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid rgba(0,0,0,.05);
-    }
-    #site-header .logo { display: flex; align-items: center; text-decoration: none; }
-    #site-header .logo img { height: 118px; }
-    #site-header nav { display: flex; gap: 28px; align-items: center; }
-    #site-header nav a {
-      text-decoration: none;
-      font-size: 1em;
-      font-weight: 400;
-      color: #c0112f;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      transition: opacity .2s;
-    }
-    #site-header nav a:hover { opacity: .65; }
-    #site-header .btn-contact {
-      background: #c0112f;
-      color: white;
-      border-radius: 8px;
-      padding: 11px 22px;
-      font-size: .82em;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background .2s;
-      white-space: nowrap;
-    }
-    #site-header .btn-contact:hover { background: #a00f27; }
-    @media (max-width: 960px) {
-      #site-header { padding: 0 20px; }
-      #site-header nav { display: none; }
-    }
+    .page-center { flex:1; display:flex; align-items:center; justify-content:center; padding:40px 16px; }
 
-    /* ── Page center ── */
-    .page-center {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 16px;
-    }
+    .card { width:100%; max-width:480px; background:#fff; border-radius:var(--radius-card); padding:36px 36px 32px; box-shadow:var(--shadow); animation:fadeUp .45s ease both; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
 
-    /* ── Card ── */
-    .card {
-      width: 100%;
-      max-width: 480px;
-      background: #fff;
-      border-radius: var(--radius-card);
-      padding: 36px 36px 32px;
-      box-shadow: var(--shadow);
-      animation: fadeUp .45s ease both;
-    }
+    h1 { font-family:'Poltawski Nowy',serif; font-size:26px; font-weight:600; line-height:1.25; letter-spacing:-.4px; margin-bottom:6px; color:var(--text); }
+    .subtitle { color:var(--muted); font-size:14px; margin-bottom:28px; }
+    .form-hint { font-size:13.5px; color:var(--muted); margin-bottom:20px; }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .field { margin-bottom:16px; }
+    label { display:block; font-size:13px; font-weight:700; letter-spacing:.3px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+    input { width:100%; height:44px; border:1.5px solid var(--border); border-radius:var(--radius-input); background:var(--bg); color:var(--text); font-family:'Karla',sans-serif; font-size:15px; padding:0 14px; transition:border-color .18s,box-shadow .18s,background .18s; -webkit-appearance:none; appearance:none; }
+    input:focus { outline:none; border-color:var(--red); box-shadow:0 0 0 3px var(--red-soft); background:#fff; }
+    input::placeholder { color:#b0a9a4; }
 
-    /* ── Typography ── */
-    h1 {
-      font-family: 'Poltawski Nowy', serif;
-      font-size: 26px;
-      font-weight: 600;
-      line-height: 1.25;
-      letter-spacing: -.4px;
-      margin-bottom: 6px;
-      color: var(--text);
-    }
+    select { height:44px; border:1.5px solid var(--border); border-radius:var(--radius-input); background:var(--bg); color:var(--text); font-family:'Karla',sans-serif; font-size:15px; padding:0 10px; cursor:pointer; transition:border-color .18s,box-shadow .18s; -webkit-appearance:none; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 10px center; padding-right:28px; flex-shrink:0; }
+    select:focus { outline:none; border-color:var(--red); box-shadow:0 0 0 3px var(--red-soft); }
 
-    .subtitle {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 28px;
-    }
+    .phone-row { display:flex; gap:8px; }
+    .phone-row select { width:130px; }
+    .phone-row input { flex:1; }
 
-    .form-hint {
-      font-size: 13.5px;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
+    .btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; height:46px; background:var(--red); color:#fff; font-family:'Karla',sans-serif; font-size:15px; font-weight:700; letter-spacing:.2px; border:none; border-radius:var(--radius-btn); cursor:pointer; margin-top:20px; box-shadow:0 4px 16px rgba(192,17,47,.32); transition:opacity .18s,transform .12s,box-shadow .18s; user-select:none; }
+    .btn:hover:not(:disabled) { opacity:.9; transform:translateY(-1px); box-shadow:0 6px 22px rgba(192,17,47,.42); }
+    .btn:active:not(:disabled) { transform:translateY(0); opacity:1; }
+    .btn:disabled { opacity:.7; cursor:not-allowed; box-shadow:none; }
+    .btn-outline { background:transparent; color:var(--red); border:1.5px solid var(--red); box-shadow:none; }
+    .btn-outline:hover:not(:disabled) { box-shadow:none; background:rgba(192,17,47,.05); }
 
-    /* ── Fields ── */
-    .field { margin-bottom: 16px; }
+    .spinner { width:16px; height:16px; border:2.5px solid rgba(255,255,255,.35); border-top-color:#fff; border-radius:50%; animation:spin .65s linear infinite; flex-shrink:0; }
+    @keyframes spin { to{transform:rotate(360deg)} }
 
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .3px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
+    .alert { border-radius:10px; padding:13px 16px; font-size:14px; line-height:1.5; margin-top:20px; animation:fadeUp .3s ease both; }
+    .alert-success { background:var(--success-bg); color:var(--success-text); }
+    .alert-error   { background:var(--error-bg);   color:var(--error-text); }
+    .alert strong  { font-weight:700; }
 
-    input {
-      width: 100%;
-      height: 44px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-input);
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Karla', sans-serif;
-      font-size: 15px;
-      padding: 0 14px;
-      transition: border-color .18s, box-shadow .18s, background .18s;
-      -webkit-appearance: none;
-      appearance: none;
-    }
+    .section { animation:fadeUp .35s ease both; }
+    .hidden { display:none !important; }
 
-    input:focus {
-      outline: none;
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px var(--red-soft);
-      background: #fff;
-    }
-
-    input::placeholder { color: #b0a9a4; }
-
-    /* ── Select (country code) ── */
-    select {
-      height: 44px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-input);
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Karla', sans-serif;
-      font-size: 15px;
-      padding: 0 10px;
-      cursor: pointer;
-      transition: border-color .18s, box-shadow .18s;
-      -webkit-appearance: none;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 10px center;
-      padding-right: 28px;
-      flex-shrink: 0;
-    }
-    select:focus {
-      outline: none;
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px var(--red-soft);
-    }
-
-    /* ── Phone row ── */
-    .phone-row {
-      display: flex;
-      gap: 8px;
-    }
-    .phone-row select  { width: 130px; }
-    .phone-row input   { flex: 1; }
-
-    /* ── Button ── */
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      height: 46px;
-      background: var(--red);
-      color: #fff;
-      font-family: 'Karla', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: .2px;
-      border: none;
-      border-radius: var(--radius-btn);
-      cursor: pointer;
-      margin-top: 20px;
-      box-shadow: 0 4px 16px rgba(192,17,47,.32);
-      transition: opacity .18s, transform .12s, box-shadow .18s;
-      user-select: none;
-    }
-    .btn:hover:not(:disabled)  { opacity: .9; transform: translateY(-1px); box-shadow: 0 6px 22px rgba(192,17,47,.42); }
-    .btn:active:not(:disabled) { transform: translateY(0); opacity: 1; }
-    .btn:disabled              { opacity: .7; cursor: not-allowed; box-shadow: none; }
-    .btn-outline {
-      background: transparent;
-      color: var(--red);
-      border: 1.5px solid var(--red);
-      box-shadow: none;
-    }
-    .btn-outline:hover:not(:disabled) { box-shadow: none; background: rgba(192,17,47,.05); }
-
-    /* ── Spinner ── */
-    .spinner {
-      width: 16px;
-      height: 16px;
-      border: 2.5px solid rgba(255,255,255,.35);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin .65s linear infinite;
-      flex-shrink: 0;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ── Alerts ── */
-    .alert {
-      border-radius: 10px;
-      padding: 13px 16px;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-top: 20px;
-      animation: fadeUp .3s ease both;
-    }
-    .alert-success { background: var(--success-bg); color: var(--success-text); }
-    .alert-error   { background: var(--error-bg);   color: var(--error-text);   }
-    .alert strong  { font-weight: 700; }
-
-    /* ── Sections ── */
-    .section { animation: fadeUp .35s ease both; }
-
-    .hidden { display: none !important; }
+    /* ── Footer ── */
+    #site-footer { background:#f5f5f5; padding:52px 60px 32px; margin-top:auto; }
+    .footer-grid { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:80px; margin-bottom:40px; align-items:start; }
+    .footer-brand img { height:101px; display:block; margin-bottom:20px; }
+    .footer-brand a { display:block; text-decoration:none; color:#333; font-size:1em; font-weight:400; margin-bottom:10px; text-transform:uppercase; letter-spacing:.07em; transition:color .2s; }
+    .footer-brand a:hover { color:#c0112f; }
+    .footer-col h4 { font-size:.72em; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:#aaa; margin-bottom:14px; }
+    .footer-col p { font-size:.86em; color:#555; line-height:1.75; }
+    .footer-col p a { color:#c0112f; text-decoration:none; }
+    .social-icons { display:flex; gap:12px; margin-bottom:20px; }
+    .social-icons a { width:38px; height:38px; border-radius:50%; background:#c0112f; display:flex; align-items:center; justify-content:center; text-decoration:none; transition:background .2s; flex-shrink:0; }
+    .social-icons a:hover { background:#a00f27; }
+    .social-icons svg { width:17px; height:17px; fill:white; }
+    .footer-btn { display:inline-block; background:#c0112f; color:white; border-radius:8px; padding:11px 22px; font-size:.82em; font-weight:600; font-family:'Karla',sans-serif; text-decoration:none; white-space:nowrap; transition:background .2s; }
+    .footer-btn:hover { background:#a00f27; }
+    .footer-bottom { border-top:1px solid #ddd; padding-top:20px; display:flex; justify-content:space-between; align-items:center; font-size:.78em; color:#aaa; }
+    .footer-bottom a { color:#aaa; text-decoration:none; }
+    .footer-bottom a:hover { color:#c0112f; }
+    @media(max-width:768px){ #site-footer{padding:36px 20px 24px;} .footer-grid{grid-template-columns:1fr 1fr;gap:28px;} .footer-bottom{flex-direction:column;gap:8px;text-align:center;} }
   </style>
 </head>
 <body>
@@ -293,12 +124,10 @@
   <div id="step-lookup" class="section">
     <h1>Tu ID&nbsp;Participante</h1>
     <p class="subtitle">Ingresa tu correo para recuperar o crear tu ID Participante.</p>
-
     <div class="field">
       <label for="email-input">Correo electrónico</label>
       <input type="email" id="email-input" placeholder="correo@ejemplo.com" autocomplete="email" />
     </div>
-
     <button class="btn" id="btn-buscar" onclick="buscar()">Buscar</button>
     <div id="lookup-error" class="alert alert-error hidden"></div>
   </div>
@@ -314,7 +143,6 @@
   <div id="step-register" class="section hidden">
     <h1>Completa tu registro</h1>
     <p class="form-hint">No encontramos un ID Participante con ese correo. Llena los datos para crearlo.</p>
-
     <div class="field">
       <label for="reg-email">Correo electrónico</label>
       <input type="email" id="reg-email" placeholder="correo@ejemplo.com" autocomplete="email" />
@@ -358,7 +186,6 @@
       <label for="reg-fecha">Fecha de nacimiento</label>
       <input type="date" id="reg-fecha" />
     </div>
-
     <button class="btn" id="btn-registrar" onclick="registrar()">Crear perfil</button>
     <div id="register-error" class="alert alert-error hidden"></div>
   </div>
@@ -370,45 +197,63 @@
     <button class="btn btn-outline" onclick="nuevaBusqueda()">← Nueva búsqueda</button>
   </div>
 
-</div><!-- /card -->
-</div><!-- /page-center -->
+</div>
+</div>
 
 <script>
-  // El token es inyectado por api/index.js en Vercel antes de servir esta página.
-  // Nunca debe aparecer hardcodeado aquí.
   const AIRTABLE_TOKEN = window.__QUERY_ID_PARTICIPANTE__ || '';
   const AIRTABLE_URL   = 'https://api.airtable.com/v0/appGQ2udExw1H21mk/tbldMm6u16mQhQvcz';
   const GHL_WEBHOOK    = '/api/webhook';
 
-  /* ── Utilidades ── */
-  const $     = id => document.getElementById(id);
-  const show  = id => $(id).classList.remove('hidden');
-  const hide  = id => $(id).classList.add('hidden');
+  const $       = id => document.getElementById(id);
+  const show    = id => $(id).classList.remove('hidden');
+  const hide    = id => $(id).classList.add('hidden');
   const setHTML = (id, h) => $(id).innerHTML = h;
 
   function setBtn(btn, label, loading) {
     btn.disabled = loading;
     btn.innerHTML = loading ? `<span class="spinner"></span>${label}` : label;
   }
-
-  function showError(id, msg) {
-    $(id).innerHTML = `<strong>Error:</strong> ${msg}`;
-    $(id).classList.remove('hidden');
-  }
-
+  function showError(id, msg) { $(id).innerHTML = `<strong>Error:</strong> ${msg}`; $(id).classList.remove('hidden'); }
   function hideError(id) { $(id).classList.add('hidden'); }
 
-  /* ── Webhook GHL (no-cors, nunca rompe el flujo) ── */
   async function dispararWebhook(payload) {
     try {
-      await fetch(GHL_WEBHOOK, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload),
-      });
-    } catch (e) {
-      console.warn('Webhook GHL falló (no crítico):', e);
+      await fetch(GHL_WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    } catch(e) { console.warn('Webhook GHL falló (no crítico):', e); }
+  }
+
+  /* ── Capitalización ── */
+  const EXCEPCIONES = ["de","del","la","las","los","y"];
+  function toProperCase(str) {
+    return str.toLowerCase().split(" ").filter(p=>p.trim()!=="")
+      .map((p,i)=>(EXCEPCIONES.includes(p)&&i!==0)?p:p.charAt(0).toUpperCase()+p.slice(1))
+      .join(" ");
+  }
+
+  /* ── Generar ID Participante ──
+     Formato: 3 letras del nombre + 6 dígitos de la fecha (DDMMAA)
+     Si no hay fecha de nacimiento → 6 dígitos aleatorios            */
+  function generarIdParticipante(nombre, fecha) {
+    // 3 letras del nombre (sin acentos, mayúsculas)
+    let limpio = (nombre ?? "").trim().toUpperCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^A-Z\s]/g, "");
+    if (!limpio) limpio = "PAR";
+    const letras = limpio.replace(/\s+/g,"").slice(0, 3).padEnd(3,"X");
+
+    // 6 dígitos: DDMMAA de la fecha, o random si no hay fecha
+    let digitos;
+    if (fecha) {
+      // fecha viene en formato YYYY-MM-DD
+      const [yyyy, mm, dd] = fecha.split("-");
+      const aa = yyyy.slice(2); // últimos 2 dígitos del año
+      digitos = `${dd}${mm}${aa}`;
+    } else {
+      digitos = String(Math.floor(100000 + Math.random() * 900000));
     }
+
+    return `${letras}${digitos}`;
   }
 
   /* ── PASO 1: Buscar ── */
@@ -416,185 +261,134 @@
     const emailInput = $('email-input');
     const email = emailInput.value.trim().toLowerCase();
     const btn   = $('btn-buscar');
-
     hideError('lookup-error');
-
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       showError('lookup-error', 'Ingresa un correo electrónico válido.');
-      emailInput.focus();
-      return;
+      emailInput.focus(); return;
     }
-
     setBtn(btn, 'Buscando…', true);
-
     try {
       const formula = encodeURIComponent(`({Email}="${email}")`);
       const res = await fetch(`${AIRTABLE_URL}?filterByFormula=${formula}`, {
-        headers: { Authorization: `Bearer ${AIRTABLE_TOKEN}` },
+        headers: { Authorization: `Bearer ${AIRTABLE_TOKEN}` }
       });
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err?.error?.message || `HTTP ${res.status}`);
-      }
-
+      if (!res.ok) { const err=await res.json().catch(()=>({})); throw new Error(err?.error?.message||`HTTP ${res.status}`); }
       const data = await res.json();
-
       if (data.records && data.records.length > 0) {
-        /* CASO A: encontrado */
         const f = data.records[0].fields || {};
         const payload = {
-          nombre:           f['Nombre']             || '',
-          apellidos:        f['Apellidos']           || '',
-          email:            f['Email']               || email,
-          whatsapp:         f['WhatsApp']            || '',
-          fecha_nacimiento: f['Fecha de Nacimiento'] || '',
-          id_participante:  f['ID Participante']     || '',
-          origen:           'encontrado',
+          nombre: f['Nombre']||'', apellidos: f['Apellidos']||'',
+          email: f['Email']||email, whatsapp: f['WhatsApp']||'',
+          fecha_nacimiento: f['Fecha de Nacimiento']||'',
+          id_participante: f['ID Participante']||'', origen: 'encontrado'
         };
-
-        hide('step-lookup');
-        show('step-found');
-        setHTML('found-msg',
-          `Tu <strong>ID Participante</strong> fue enviado a <strong>${payload.email}</strong>. Revisa tu bandeja de entrada.`);
-
+        hide('step-lookup'); show('step-found');
+        setHTML('found-msg', `Tu <strong>ID Participante</strong> fue enviado a <strong>${payload.email}</strong>. Revisa tu bandeja de entrada.`);
         await dispararWebhook(payload);
-
       } else {
-        /* CASO B: no encontrado */
-        hide('step-lookup');
-        show('step-register');
+        hide('step-lookup'); show('step-register');
         $('reg-email').value = email;
       }
-
-    } catch (e) {
-      showError('lookup-error', e.message || 'No pudimos conectar con el servidor. Intenta de nuevo.');
-    } finally {
-      setBtn(btn, 'Buscar', false);
-    }
-  }
-
-  /* ── Helpers: capitalización ── */
-  const EXCEPCIONES = ["de", "del", "la", "las", "los", "y"];
-
-  function toProperCase(str) {
-    return str
-      .toLowerCase()
-      .split(" ")
-      .filter(p => p.trim() !== "")
-      .map((palabra, index) => {
-        if (EXCEPCIONES.includes(palabra) && index !== 0) return palabra;
-        return palabra.charAt(0).toUpperCase() + palabra.slice(1);
-      })
-      .join(" ");
-  }
-
-  /* ── Helper: generar ID Participante ── */
-  function generarIdParticipante(nombre) {
-    let limpio = (nombre ?? "").trim().toUpperCase()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^A-Z\s]/g, "");
-    if (!limpio) return "PAR" + Math.floor(100000 + Math.random() * 900000);
-    const letras  = limpio.replace(/\s+/g, "").slice(0, 3);
-    const random6 = Math.floor(100000 + Math.random() * 900000);
-    return `${letras}${random6}`;
+    } catch(e) {
+      showError('lookup-error', e.message||'No pudimos conectar con el servidor. Intenta de nuevo.');
+    } finally { setBtn(btn, 'Buscar', false); }
   }
 
   /* ── PASO 2-B: Registrar ── */
   async function registrar() {
-    const email          = $('reg-email').value.trim();
-    const nombreRaw      = $('reg-nombre').value.trim();
-    const apellidosRaw   = $('reg-apellidos').value.trim();
-    const pais           = $('reg-pais').value.replace('-CA', '').replace('+', '');
-    const numero         = $('reg-whatsapp').value.trim().replace(/\D/g, '');
-    const whatsapp       = numero ? Number(`${pais}${numero}`) : null;
-    const fecha          = $('reg-fecha').value;
-    const btn            = $('btn-registrar');
-
+    const email        = $('reg-email').value.trim();
+    const nombreRaw    = $('reg-nombre').value.trim();
+    const apellidosRaw = $('reg-apellidos').value.trim();
+    const pais         = $('reg-pais').value.replace('-CA','').replace('+','');
+    const numero       = $('reg-whatsapp').value.trim().replace(/\D/g,'');
+    const whatsapp     = numero ? Number(`${pais}${numero}`) : null;
+    const fecha        = $('reg-fecha').value;
+    const btn          = $('btn-registrar');
     hideError('register-error');
+    if (!email)        { showError('register-error','El correo es requerido.'); return; }
+    if (!nombreRaw)    { showError('register-error','El nombre es requerido.'); return; }
+    if (!apellidosRaw) { showError('register-error','Los apellidos son requeridos.'); return; }
+    if (!whatsapp)     { showError('register-error','El WhatsApp es requerido.'); return; }
+    if (!fecha)        { showError('register-error','La fecha de nacimiento es requerida.'); return; }
 
-    if (!email)        { showError('register-error', 'El correo es requerido.'); return; }
-    if (!nombreRaw)    { showError('register-error', 'El nombre es requerido.'); return; }
-    if (!apellidosRaw) { showError('register-error', 'Los apellidos son requeridos.'); return; }
-    if (!whatsapp)     { showError('register-error', 'El WhatsApp es requerido.'); return; }
-    if (!fecha)        { showError('register-error', 'La fecha de nacimiento es requerida.'); return; }
-
-    // Capitalización correcta
     const nombre      = toProperCase(nombreRaw);
     const apellidos   = toProperCase(apellidosRaw);
 
-    // Generar ID Participante
-    const idParticipante = generarIdParticipante(nombreRaw);
+    // ID con fecha de nacimiento: DDMMAA
+    const idParticipante = generarIdParticipante(nombreRaw, fecha);
 
     setBtn(btn, 'Creando…', true);
-
     try {
       const createRes = await fetch(AIRTABLE_URL, {
-        method:  'POST',
-        headers: {
-          Authorization:  `Bearer ${AIRTABLE_TOKEN}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          fields: {
-            'ID Participante':     idParticipante,
-            Email:                 email,
-            Nombre:                nombre,
-            Apellidos:             apellidos,
-            WhatsApp:              whatsapp,
-            'Fecha de Nacimiento': fecha,
-          },
-        }),
+        method:'POST',
+        headers: { Authorization:`Bearer ${AIRTABLE_TOKEN}`, 'Content-Type':'application/json' },
+        body: JSON.stringify({ fields: {
+          'ID Participante': idParticipante,
+          Email: email, Nombre: nombre, Apellidos: apellidos,
+          WhatsApp: whatsapp, 'Fecha de Nacimiento': fecha
+        }})
       });
-
-      if (!createRes.ok) {
-        const err = await createRes.json().catch(() => ({}));
-        throw new Error(err?.error?.message || `HTTP ${createRes.status}`);
-      }
-
-      hide('step-register');
-      show('step-created');
-      setHTML('created-msg',
-        `Tu <strong>ID Participante</strong> fue enviado a <strong>${email}</strong>. Revisa tu bandeja de entrada.`);
-
-      await dispararWebhook({
-        nombre, apellidos, email, whatsapp,
-        fecha_nacimiento: fecha,
-        id_participante:  idParticipante,
-        origen:           'nuevo',
-      });
-
-    } catch (e) {
-      showError('register-error', e.message || 'No pudimos crear el perfil. Intenta de nuevo.');
-    } finally {
-      setBtn(btn, 'Crear perfil', false);
-    }
+      if (!createRes.ok) { const err=await createRes.json().catch(()=>({})); throw new Error(err?.error?.message||`HTTP ${createRes.status}`); }
+      hide('step-register'); show('step-created');
+      setHTML('created-msg', `Tu <strong>ID Participante</strong> fue enviado a <strong>${email}</strong>. Revisa tu bandeja de entrada.`);
+      await dispararWebhook({ nombre, apellidos, email, whatsapp, fecha_nacimiento:fecha, id_participante:idParticipante, origen:'nuevo' });
+    } catch(e) {
+      showError('register-error', e.message||'No pudimos crear el perfil. Intenta de nuevo.');
+    } finally { setBtn(btn, 'Crear perfil', false); }
   }
 
   /* ── Nueva búsqueda ── */
   function nuevaBusqueda() {
-    // Ocultar todos los pasos
-    hide('step-found');
-    hide('step-created');
-    hide('step-register');
-    // Limpiar campos
-    $('email-input').value = '';
-    $('reg-email').value   = '';
-    $('reg-nombre').value  = '';
-    $('reg-apellidos').value = '';
-    $('reg-whatsapp').value  = '';
-    $('reg-pais').value      = '+52';
-    $('reg-fecha').value     = '';
-    hideError('lookup-error');
-    hideError('register-error');
-    // Volver al paso 1
-    show('step-lookup');
-    $('email-input').focus();
+    hide('step-found'); hide('step-created'); hide('step-register');
+    $('email-input').value=''; $('reg-email').value=''; $('reg-nombre').value='';
+    $('reg-apellidos').value=''; $('reg-whatsapp').value=''; $('reg-pais').value='+52'; $('reg-fecha').value='';
+    hideError('lookup-error'); hideError('register-error');
+    show('step-lookup'); $('email-input').focus();
   }
 
-  /* ── Enter en el campo email ── */
-  $('email-input').addEventListener('keydown', e => { if (e.key === 'Enter') buscar(); });
+  $('email-input').addEventListener('keydown', e => { if(e.key==='Enter') buscar(); });
 </script>
 
+<footer id="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="https://static.wixstatic.com/media/6bf1ef_d0efb91350e04315be1fe1a9982e69c8~mv2.png" alt="Sophia">
+      <a href="https://sophiamx.org" target="_blank">Home</a>
+      <a href="https://sophiamx.org/sophia" target="_blank">Sophia</a>
+      <a href="https://sophiamx.org/estudia" target="_blank">Estudia</a>
+      <a href="https://sophiamx.org/coaching" target="_blank">Coaching</a>
+      <a href="https://sophiamx.org/embajadores" target="_blank">Embajadores</a>
+      <a href="https://sophiamx.org/consultoria" target="_blank">Consultoría</a>
+    </div>
+    <div class="footer-col">
+      <h4>Sede Principal</h4>
+      <p>Akadem:<br>Río Suchiate 722, Zona Tampiquito,<br>Lomas del Valle, 66256<br>San Pedro Garza García</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <p>+52 81 1988 1581<br><a href="mailto:contacto@sophiamx.org">contacto@sophiamx.org</a></p>
+      <br><p><a href="https://sophiamx.org/politica-de-privacidad" target="_blank" style="color:#999;font-size:.9em;">Política de Privacidad</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Redes Sociales</h4>
+      <div class="social-icons">
+        <a href="https://instagram.com/sophiamx" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://facebook.com/sophiamx" target="_blank" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://linkedin.com/company/sophiamx" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+      <a class="footer-btn" href="https://sophiamx.org/contacto" target="_blank">Contáctanos</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Sophia. Todos los derechos reservados.</span>
+    <a href="https://sophiamx.org/politica-de-privacidad" target="_blank">Política de Privacidad</a>
+  </div>
+</footer>
 </body>
 </html>
